@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>man</title>
+    <url>/2019/11/07/man/</url>
+    <content><![CDATA[<p>this is manjaro</p>]]></content>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>manjaro安装与美化</title>
     <url>/2019/11/05/manjaro%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h2 id="Manjaro-简介"><a href="#Manjaro-简介" class="headerlink" title="Manjaro 简介"></a>Manjaro 简介</h2><p><a href="https://www.manjaro.cn/category/about-manjaro-linux" target="_blank" rel="noopener">Manjaro</a> 是一款基于 Arch Linux、对用户友好的 Linux 发行版。在 Linux 社区，Arch Linux  的确是一个异常快速、强大、轻量级的发行版，它提供最新的、最全的软件。然而，Arch Linux  面向高级用户，普遍认为，缺乏技术专长或者没有耐心的人是无法玩转 Arch Linux的。</p><a id="more"></a>
