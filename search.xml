@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>hexo+coding搭建个人博客</title>
-    <url>/2019/11/05/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <url>/2019/11/05/hexo+coding%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
 <p>注：以下内容在manjaroi系统操作</p>
 </blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
@@ -87,7 +87,7 @@
         <category>web前端</category>
       </categories>
       <tags>
-        <tag>hexo coding 博客</tag>
+        <tag>hexo,coding,博客</tag>
       </tags>
   </entry>
   <entry>
