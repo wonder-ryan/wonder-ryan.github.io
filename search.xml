@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>hexo+coding搭建个人博客</title>
-    <url>/2019/11/05/hexo+coding%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <title>hexo+github搭建个人博客</title>
+    <url>/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
-<p>注：以下内容在manjaroi系统操作</p>
+<p>注：以下内容在manjaro系统操作</p>
 </blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
 
 
@@ -28,12 +28,6 @@
 
 <h4 id="2、安装hexo"><a href="#2、安装hexo" class="headerlink" title="2、安装hexo"></a>2、安装hexo</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
-<p>部署工具</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>server工具</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
-
 <h4 id="3、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。"><a href="#3、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。" class="headerlink" title="3、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。"></a>3、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
 <p>新建完成后，指定文件夹的目录如下：</p>
@@ -49,19 +43,27 @@
 <p>如果你没有pug以及stylus的渲染器，请下载安装： </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug  hexo-renderer-stylus --save </span><br><span class="line">或者</span><br><span class="line">yarn add hexo-renderer-pug  hexo-renderer-stylus</span><br></pre></td></tr></table></figure>
 
-
-
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">type: git  </span><br><span class="line">repo: https://github.com/&lt;username&gt;/&lt;project&gt;  </span><br><span class="line"># example, https://github.com/hexojs/hexojs.github.io  </span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
 
-<h2 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p> 部署工具</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;博客目录&gt;</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>server工具</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-server--save</span><br></pre></td></tr></table></figure>
+
+<h2 id="hexo命令："><a href="#hexo命令：" class="headerlink" title="hexo命令："></a>hexo命令：</h2><h4 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<h4 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
 
 <p>生成静态文件。该命令可以简写为</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
 
-<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 
 <p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
-<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>部署网站。该命令可以简写为：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
@@ -78,17 +80,12 @@
 <td>部署之前预先生成静态文件</td>
 </tr>
 </tbody></table>
-<h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
 ]]></content>
       <categories>
         <category>web前端</category>
       </categories>
       <tags>
         <tag>hexo</tag>
-        <tag>coding</tag>
         <tag>博客</tag>
       </tags>
   </entry>
