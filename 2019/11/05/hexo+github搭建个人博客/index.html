@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="hexo+github搭建个人博客 注：以下内容在manjaro系统操作 1、安装git、nodejs、npm1sudo pacman -S git npm nodejsgit配置：1cd ~&#x2F;. ssh #检查本机已存在的ssh密钥如果提示：No such file or directory 说明你是第一次使用git。">
+  <meta name="description" content="hexo+github搭建个人博客 注：以下内容在manjaro系统操作 1、安装git、nodejs、npm1sudo pacman -S git npm nodejs2、注册github帐号并配置​    注册githubn帐号后，新建一个 &amp;lt;你的用户名.github.io&amp;gt; 的仓库（repository）">
 <meta name="keywords" content="hexo,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo+github搭建个人博客">
 <meta property="og:url" content="https:&#x2F;&#x2F;wonder-ryan.github.io&#x2F;2019&#x2F;11&#x2F;05&#x2F;hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2&#x2F;index.html">
 <meta property="og:site_name" content="Ryan&#39;Blog">
-<meta property="og:description" content="hexo+github搭建个人博客 注：以下内容在manjaro系统操作 1、安装git、nodejs、npm1sudo pacman -S git npm nodejsgit配置：1cd ~&#x2F;. ssh #检查本机已存在的ssh密钥如果提示：No such file or directory 说明你是第一次使用git。">
+<meta property="og:description" content="hexo+github搭建个人博客 注：以下内容在manjaro系统操作 1、安装git、nodejs、npm1sudo pacman -S git npm nodejs2、注册github帐号并配置​    注册githubn帐号后，新建一个 &amp;lt;你的用户名.github.io&amp;gt; 的仓库（repository）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-08T05:56:05.000Z">
+<meta property="og:updated_time" content="2019-11-08T06:26:12.000Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://wonder-ryan.github.io/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
@@ -239,7 +239,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-08 13:56:05" itemprop="dateModified" datetime="2019-11-08T13:56:05+08:00">2019-11-08</time>
+                <time title="修改时间：2019-11-08 14:26:12" itemprop="dateModified" datetime="2019-11-08T14:26:12+08:00">2019-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +259,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -280,13 +280,14 @@
       
         <h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
 <p>注：以下内容在manjaro系统操作</p>
-</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S git npm nodejs</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
+</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S git npm nodejs</span><br></pre></td></tr></table></figure><h4 id="2、注册github帐号并配置"><a href="#2、注册github帐号并配置" class="headerlink" title="2、注册github帐号并配置"></a>2、注册github帐号并配置</h4><p>​    注册githubn帐号后，新建一个 &lt;你的用户名.github.io&gt; 的仓库（repository）</p><a id="more"></a>
 
 
 
+<p>配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure>
 
-
-
+<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮件地址"</span></span><br></pre></td></tr></table></figure>
 
 <p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到<code>.ssh\id_rsa.pub</code>文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key,将刚复制的内容粘贴到key那里，title随便填，保存。</p>
@@ -299,7 +300,7 @@
 </blockquote>
 <p>看到这个信息说明SSH已配置成功！</p>
 <p>此时你还需要配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"github名称"</span></span><br><span class="line">git config --global user.email <span class="string">"注册github邮箱"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"github用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"邮箱地址"</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="3、安装hexo"><a href="#3、安装hexo" class="headerlink" title="3、安装hexo"></a>3、安装hexo</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
@@ -337,7 +338,7 @@
 
 <h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 
-<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
+<p>启动本地预览服务。默认情况下，访问网址为： <code>http://localhost:4000/</code> 预览一下，如果没有问题就可以 hexo deploy 部署到网站上了</p>
 <h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>部署网站。该命令可以简写为：</p>
@@ -423,7 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-github搭建个人博客"><span class="nav-number">1.</span> <span class="nav-text">hexo+github搭建个人博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装git、nodejs、npm"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、安装git、nodejs、npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、安装hexo"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">3、安装hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">4、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、安装主题"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">5、安装主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、配置-config-yml"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">6、配置_config.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、deploy配置"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">7、deploy配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、安装部署工具"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">7、安装部署工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo命令："><span class="nav-number">1.1.</span> <span class="nav-text">hexo命令：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#clean"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">clean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">generate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deploy"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">deploy</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-github搭建个人博客"><span class="nav-number">1.</span> <span class="nav-text">hexo+github搭建个人博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装git、nodejs、npm"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、安装git、nodejs、npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、注册github帐号并配置"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、注册github帐号并配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、安装hexo"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、安装hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、安装主题"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5、安装主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、配置-config-yml"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">6、配置_config.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、deploy配置"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">7、deploy配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、安装部署工具"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">7、安装部署工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo命令："><span class="nav-number">1.1.</span> <span class="nav-text">hexo命令：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#clean"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">clean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">generate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deploy"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">deploy</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

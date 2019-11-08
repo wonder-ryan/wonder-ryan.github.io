@@ -16,13 +16,14 @@
     <url>/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
 <p>注：以下内容在manjaro系统操作</p>
-</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm nodejs</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
+</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm nodejs</span><br></pre></td></tr></table></figure><h4 id="2、注册github帐号并配置"><a href="#2、注册github帐号并配置" class="headerlink" title="2、注册github帐号并配置"></a>2、注册github帐号并配置</h4><p>​    注册githubn帐号后，新建一个 &lt;你的用户名.github.io&gt; 的仓库（repository）</p><a id="more"></a>
 
 
 
+<p>配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure>
 
-
-
+<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮件地址"</span></span><br></pre></td></tr></table></figure>
 
 <p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到<code>.ssh\id_rsa.pub</code>文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key,将刚复制的内容粘贴到key那里，title随便填，保存。</p>
@@ -35,7 +36,7 @@
 </blockquote>
 <p>看到这个信息说明SSH已配置成功！</p>
 <p>此时你还需要配置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"github名称"</span></span><br><span class="line">git config --global user.email <span class="string">"注册github邮箱"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"github用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"邮箱地址"</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="3、安装hexo"><a href="#3、安装hexo" class="headerlink" title="3、安装hexo"></a>3、安装hexo</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
@@ -73,7 +74,7 @@
 
 <h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 
-<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
+<p>启动本地预览服务。默认情况下，访问网址为： <code>http://localhost:4000/</code> 预览一下，如果没有问题就可以 hexo deploy 部署到网站上了</p>
 <h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>部署网站。该命令可以简写为：</p>
