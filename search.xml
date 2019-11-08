@@ -1,11 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>manjaro安装与美化</title>
+    <url>/2019/11/05/manjaro%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="Manjaro-简介"><a href="#Manjaro-简介" class="headerlink" title="Manjaro 简介"></a>Manjaro 简介</h2><p><a href="https://www.manjaro.cn/category/about-manjaro-linux" target="_blank" rel="noopener">Manjaro</a> 是一款基于 Arch Linux、对用户友好的 Linux 发行版。在 Linux 社区，Arch Linux  的确是一个异常快速、强大、轻量级的发行版，它提供最新的、最全的软件。然而，Arch Linux  面向高级用户，普遍认为，缺乏技术专长或者没有耐心的人是无法玩转 Arch Linux的。</p><a id="more"></a>
+<p>Manjaro 由奥地利、法国和德国的爱好者共同开发，提供了 Arch Linux 操作系统的所有优点，同时注重用户友好性和可用性。 Manjaro 提供32位和64位版本，适合新手以及经验丰富的 Linux 用户。</p>
+<p>Manjaro 与 Arch 有许多相同的功能，包括：</p>
+<ul>
+<li>“滚动发行”开发模式，可提供最新的系统，而无需安装新版本</li>
+<li>可用 AUR</li>
+</ul>
+<p>然而，Manjaro 拥有自己的一些额外的功能，包括：</p>
+<ul>
+<li>简化、用户友好的安装过程</li>
+<li>自动检测计算机的硬件（例如显卡）</li>
+<li>为系统自动安装必要的软件（例如显卡驱动程序）</li>
+<li>它自己的专用软件仓库，以确保提供完全测试过的稳定的软件包</li>
+<li>轻松安装和使用多个内核。</li>
+</ul>
+<p>补充</p>
+<p><a href="https://wiki.archlinux.org/index.php/Arch_Linux_(简体中文" target="_blank" rel="noopener">Arch Linux（或 Arch /ˈɑːrtʃ/)）</a> 是一款基于 x86-64 架构的 Linux发行版。系统主要由自由和开源软件组成，支持社区参与。系统设计以 KISS  原则（保持简单和愚蠢）为总体指导原则，注重代码正确、优雅和极简主义，期待用户能够愿意去理解系统的操作。Arch Linux  系统安装、删除和更新软件的软件包管理器叫做 pacman。</p>
+<p>AUR 的全称是 <code>Arch User Repository</code>，是 Arch Linux/Manjaro 用户的社区驱动存储库，创建 AUR 的目的是使共享社区包的过程更容易和有条理。使用它可以在 Arch Linux/Manjaro 系统中安装和更新软件包。这个软件仓库的软件包是相当丰富，可以查看这个网站的统计<a href="https://repology.org/repositories/statistics/total" target="_blank" rel="noopener">Repository statistics</a>，它的软件列表可以在<a href="https://aur.archlinux.org/packages/" target="_blank" rel="noopener">Archlinux AUR</a>查看</p>
+<h4 id="linux下制作u盘安装盘"><a href="#linux下制作u盘安装盘" class="headerlink" title="linux下制作u盘安装盘"></a>linux下制作u盘安装盘</h4><p>用命令查找U盘盘符：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+
+<p> 找到如：/dev/sdb 命名的盘符  根据容量大小判断哪个为U盘</p>
+<p>格式化U盘 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo umount /dev/sdb <span class="comment">#卸载U盘</span></span><br><span class="line"></span><br><span class="line">sudo mkfs.vfat /dev/sdb <span class="comment">#格式化U盘</span></span><br></pre></td></tr></table></figure>
+
+<p>用DD命令把镜像写入U盘</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dd <span class="keyword">if</span>=镜像路径 of=/dev/sdb（U盘盘符）</span><br></pre></td></tr></table></figure>
+
+<p> 等待完成</p>
+<h4 id="windows下用rufus软件制作"><a href="#windows下用rufus软件制作" class="headerlink" title="windows下用rufus软件制作"></a>windows下用rufus软件制作</h4><p>略过……</p>
+<h2 id="安装-Manjaro"><a href="#安装-Manjaro" class="headerlink" title="安装 Manjaro"></a>安装 Manjaro</h2><h4 id="分区："><a href="#分区：" class="headerlink" title="分区："></a>分区：</h4><table>
+<thead>
+<tr>
+<th>大小</th>
+<th>挂载点</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30G</td>
+<td><code>/</code></td>
+<td>用于存放系统文件</td>
+</tr>
+<tr>
+<td>8G</td>
+<td><code>/linuxswap</code></td>
+<td>一般设为电脑内存大小或2倍</td>
+</tr>
+<tr>
+<td>1024MB</td>
+<td><code>/boot/efi</code></td>
+<td>EFI引导分区</td>
+</tr>
+<tr>
+<td>20G</td>
+<td><code>/opt</code></td>
+<td>存放第三方软件包</td>
+</tr>
+<tr>
+<td>所有剩余的空间</td>
+<td><code>/home</code></td>
+<td>用户存储数据用</td>
+</tr>
+</tbody></table>
+<h2 id="pacman使用方法"><a href="#pacman使用方法" class="headerlink" title="pacman使用方法"></a>pacman使用方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -R 软件名　<span class="comment"># 删除单个软件包，保留其全部已经安装的依赖关系</span></span><br><span class="line">sudo pacman -Rs 软件名 <span class="comment"># 除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系</span></span><br><span class="line">sudo pacman -S 软件名  <span class="comment"># 安装软件</span></span><br><span class="line">sudo pacman -Ss 软件名  <span class="comment"># 查找软件</span></span><br><span class="line">sudo pacman -Sc <span class="comment"># 清空并且下载新数据</span></span><br><span class="line">sudo pacman -Syu　<span class="comment"># 升级所有软件包</span></span><br><span class="line">sudo pacman -Qs <span class="comment"># 搜索已安装的包</span></span><br><span class="line">sudo pacman -Syyu <span class="comment">#更新系统</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S vim</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h4 id="更改源："><a href="#更改源：" class="headerlink" title="更改源："></a>更改源：</h4><p>配置中国的 <code>mirrors</code>，在 终端 执行下面的命令从官方的源列表中对中国源进行测速和设置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman-mirrors -g  <span class="comment"># 排列源，可不执行</span></span><br><span class="line">sudo pacman-mirrors -c China -m rank <span class="comment"># 更改源，在跳出的对话框里选择想要的源</span></span><br></pre></td></tr></table></figure>
+
+<p>为 Manjaro 增加中文社区的源来加速安装软件，在 <code>/etc/pacman.conf</code> 中添加 <code>archlinuxcn</code> 源，末尾加上：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">SigLevel = Optional TrustedOnly</span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="variable">$arch</span> <span class="comment">#可选其它源</span></span><br></pre></td></tr></table></figure>
+
+<p>同步并更新系统并安装<code>archlinuxcn-keyring</code> 包以导入 <code>GPG key</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -Syy &amp;&amp;sudo pacman -S archlinuxcn-keyring</span><br></pre></td></tr></table></figure>
+
+<h2 id="开启小键盘灯"><a href="#开启小键盘灯" class="headerlink" title="开启小键盘灯"></a>开启小键盘灯</h2><p>在 /etc/sddm.conf 文件中加入一句 Numlock=on</p>
+<h2 id="安装-yay"><a href="#安装-yay" class="headerlink" title="安装 yay"></a>安装 yay</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S yay</span><br></pre></td></tr></table></figure>
+
+<p>配置 yay 的 aur 源为<a href="https://mirror.tuna.tsinghua.edu.cn/help/AUR/" target="_blank" rel="noopener">清华源 AUR 镜像</a>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay --aururl <span class="string">"https://aur.tuna.tsinghua.edu.cn"</span> --save</span><br></pre></td></tr></table></figure>
+
+<p>修改的配置文件位于 <code>~/.config/yay/config.json</code> ，还可通过以下命令查看修改过的配置:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay -P -g</span><br></pre></td></tr></table></figure>
+
+<p>yay 的常用命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay -S package <span class="comment"># 从 AUR 安装软件包</span></span><br><span class="line">yay -Rns package <span class="comment"># 删除包</span></span><br><span class="line">yay -Syu <span class="comment"># 升级所有已安装的包</span></span><br><span class="line">yay -Ps <span class="comment"># 打印系统统计信息</span></span><br><span class="line">yay -Qi package <span class="comment"># 检查安装的版本</span></span><br></pre></td></tr></table></figure>
+
+<p>yay 安装命令不需要加 <code>sudo</code>。</p>
+<h2 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h2><p>citx 是 Free Chinese Input Toy for X 的缩写，国内也常称作小企鹅输入法，是一款 Linux 下的中文输入法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S fcitx-googlepinyin <span class="comment">#谷歌拼音</span></span><br><span class="line">sudo pacman -S fcitx-im <span class="comment"># 选择全部安装</span></span><br><span class="line">sudo pacman -S fcitx-configtool <span class="comment"># 安装图形化配置工具</span></span><br></pre></td></tr></table></figure>
+
+<p>解决中文输入法无法切换问题: 添加文件 <code>~/.xprofile</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim ~/.xprofile</span><br></pre></td></tr></table></figure>
+
+<p>输入以下内容：</p>
+<p><code>export GTK_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=&quot;@im=fcitx&quot;</code></p>
+<p>输入法需要重启生效</p>
+<h2 id="安装wps"><a href="#安装wps" class="headerlink" title="安装wps"></a>安装wps</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S wps-office</span><br><span class="line">sudo pacman -S ttf-wps-fonts <span class="comment">#wps所需字体</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S zsh <span class="comment"># 安装zsh</span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看当前 shell</span></span><br><span class="line">chsh -s /bin/zsh <span class="comment"># 修改默认shell，这个是修改当前用户的终端，如果要修改 root 账户，需要切换到 root用户</span></span><br></pre></td></tr></table></figure>
+
+<p>安装插件autojump（自动跳转目标目录）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S autojump <span class="comment">#使用：j &lt;folder name&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>安装高亮显示插件和自动补全插件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br><span class="line">sudo vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>在文件中找到plugins=(git 其他插件) 在其他插件后加一个空格输入<code>zsh-syntax-highlighting zsh-autosuggestions</code>后保存退出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>使配置生效</p>
+<p>需要重启生效</p>
+<h2 id="安装中文字体"><a href="#安装中文字体" class="headerlink" title="安装中文字体"></a>安装中文字体</h2><p>为啥会突出一下要安装中欧给你问字体呢，因为我使用过程发现系统里的中文字变成了一个个小白方框的格子，安装好中文字体并重启后，就显示正常了：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S wqy-zenhei</span><br><span class="line">sudo pacman -S wqy-bitmapfont</span><br><span class="line">sudo pacman -S wqy-microhei</span><br><span class="line">sudo pacman -S adobe-source-han-sans-cn-fonts</span><br><span class="line">sudo pacman -S adobe-source-han-serif-cn-fonts</span><br><span class="line">sudo pacman -S ttf-monaco</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># deepin 系的软件</span></span><br><span class="line">sudo pacman -S deepin-picker <span class="comment"># 深度取色器</span></span><br><span class="line">sudo pacman -S deepin-screen-recorder <span class="comment"># 录屏软件，可以录制 Gif 或者 MP4 格式</span></span><br><span class="line">sudo pacman -S deepin-screenshot <span class="comment"># 深度截图</span></span><br><span class="line">sudo pacman -S deepin-system-monitor <span class="comment"># 系统状态监控</span></span><br><span class="line">yay -s deepin-wine-wechat</span><br><span class="line">yay -S deepin-wine-tim</span><br><span class="line">yay -S deepin-wine-baidupan</span><br><span class="line">yay -S deepin.com.thunderspeed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开发软件</span></span><br><span class="line">sudo pacman -S jdk8-openjdk</span><br><span class="line">sudo pacman -S make</span><br><span class="line">sudo pacman -S cmake</span><br><span class="line">sudo pacman -S clang</span><br><span class="line">sudo pacman -S nodejs</span><br><span class="line">sudo pacman -S npm</span><br><span class="line">sudo pacman -S go</span><br><span class="line">sudo pacman -S maven</span><br><span class="line">sudo pacman -S pycharm-professional <span class="comment"># Python IDE</span></span><br><span class="line">sudo pacman -S intellij-idea-ultimate-edition <span class="comment"># JAVA IDE</span></span><br><span class="line">sudo pacman -S goland <span class="comment"># Go IDE</span></span><br><span class="line">sudo pacman -S visual-studio-code-bin <span class="comment"># vscode</span></span><br><span class="line">sudo pacman -S qtcreator <span class="comment"># 一款QT开发软件</span></span><br><span class="line">sudo pacman -S postman-bin</span><br><span class="line">sudo pacman -S insomnia <span class="comment"># REST模拟工具</span></span><br><span class="line">sudo pacman -S gitkraken <span class="comment"># GIT管理工具</span></span><br><span class="line">sudo pacman -S wireshark-qt <span class="comment"># 抓包</span></span><br><span class="line">sudo pacman -S zeal</span><br><span class="line">sudo pacman -S gitkraken <span class="comment"># Git 管理工具</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 办公软件</span></span><br><span class="line">sudo pacman -S google-chrome</span><br><span class="line">sudo pacman -S foxitreader <span class="comment"># pdf 阅读</span></span><br><span class="line">sudo pacman -S bookworm <span class="comment"># 电子书阅读</span></span><br><span class="line">sudo pacman -S unrar unzip p7zip</span><br><span class="line">sudo pacman -S goldendict <span class="comment"># 翻译、取词</span></span><br><span class="line">yay -S typora <span class="comment"># markdown 编辑</span></span><br><span class="line">yay -S electron-ssr <span class="comment"># 缺少我需要的加密算法</span></span><br><span class="line">yay -S xmind</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设计</span></span><br><span class="line">sudo pacman -S pencil <span class="comment"># 免费开源界面原型图绘制工具</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 娱乐软件</span></span><br><span class="line">sudo pacman -S netease-cloud-music</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载软件</span></span><br><span class="line">sudo pacman -S aria2</span><br><span class="line">sudo pacman -S filezilla  <span class="comment"># FTP/SFTP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图形</span></span><br><span class="line">sudo pacman -S gimp <span class="comment"># 修图</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 系统工具</span></span><br><span class="line">sudo pacman -S albert <span class="comment">#类似Mac Spotlight，另外一款https://cerebroapp.com/</span></span><br><span class="line">yay -S copyq <span class="comment">#  剪贴板工具，类似 Windows 上的 Ditto</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终端</span></span><br><span class="line">sudo pacman -S screenfetch <span class="comment"># 终端打印出你的系统信息，screenfetch -A 'Arch Linux'</span></span><br><span class="line">sudo pacman -S htop</span><br><span class="line">sudo pacman -S bat</span><br><span class="line">sudo pacman -S yakuake <span class="comment"># 堪称 KDE 下的终端神器，KDE 已经自带，F12 可以唤醒</span></span><br><span class="line">sudo pacman -S net-tools <span class="comment"># 这样可以使用 ifconfig 和 netstat</span></span><br><span class="line">yay -S tldr</span><br><span class="line">yay -S tig <span class="comment"># 命令行下的 git 历史查看工具</span></span><br><span class="line">yay -S tree</span><br><span class="line">yay -S ncdu <span class="comment"># 命令行下的磁盘分析器，支持Vim操作</span></span><br><span class="line">yay -S mosh <span class="comment"># 一款速度更快的 ssh 工具，网络不稳定时使用有奇效</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><h3 id="Dolphin"><a href="#Dolphin" class="headerlink" title="Dolphin"></a>Dolphin</h3><p>Dolphin 是 KDE 下默认的文件管理器。</p>
+<ul>
+<li>在系统设置-》桌面行为-》工作空间-》点击行为，勾选”双击打开文件和文件夹“；</li>
+<li>在菜单中搜索”常规“-》确认，勾选”将文件或文件夹移至回收站“；</li>
+</ul>
+<h4 id="修改主要目录为英文"><a href="#修改主要目录为英文" class="headerlink" title="修改主要目录为英文"></a>修改主要目录为英文</h4><p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S xdg-user-dirs-gtk</span><br><span class="line"><span class="built_in">export</span> LANG=en_US</span><br><span class="line">xdg-user-dirs-gtk-update<span class="comment"># 然后有个窗口弹出，修改为英文即可。</span></span><br><span class="line"><span class="built_in">export</span> LANG=zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="显卡驱动"><a href="#显卡驱动" class="headerlink" title="显卡驱动"></a>显卡驱动</h1><p>manjaro对于笔记本使用的是bumblebee管理显卡驱动，可以实现核显卡和独立显卡的切换使用，以节电。<br>一般情况下，系统设置-&gt;硬件设定里面是已经安装了video-hybrid-intel-nvidia-bumblebee（里面包括nvidia驱动），因此不需要再从源里面或者官网下载驱动来安装了（如果没有，点击Auto Install Proprietary Driver即可，自动安装合适的专有驱动，如果是台式机，则安装独显驱动，如果是笔记本，它安装的是bumblebee驱动，默认使用核心显卡来省电），下面步骤来激活或者切换驱动。</p>
+<p>①先解决依赖</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S virtualgl lib32-virtualgl lib32-primus primus</span><br></pre></td></tr></table></figure>
+
+<p>②安装双显卡切换程序bumblebee</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mhwd -f -i pci video-hybrid-intel-nvidia-bumblebee</span><br></pre></td></tr></table></figure>
+
+<p>③允许服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> bumblebeed</span><br></pre></td></tr></table></figure>
+
+<p>④添加用户</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -a <span class="variable">$USER</span> bumblebee</span><br></pre></td></tr></table></figure>
+
+<p>重启</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>使用：optirun nvidia-smi  查看显卡信息</p>
+<p>至此，manjaro的双显卡就安装好了</p>
+<h2 id="美化桌面"><a href="#美化桌面" class="headerlink" title="美化桌面"></a>美化桌面</h2><h4 id="首先安装latte-dock（模仿mac风格的dock）"><a href="#首先安装latte-dock（模仿mac风格的dock）" class="headerlink" title="首先安装latte-dock（模仿mac风格的dock）"></a>首先安装latte-dock（模仿mac风格的dock）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S latte-dock</span><br></pre></td></tr></table></figure>
+
+<p>点击 <code>应用程序风格</code> -&gt; <code>GNOME/GTK 应用程序风格</code> -&gt; <code>获取新 GNOME/GTK 应用风格</code> -&gt; <code>下载 GTK3 主题</code>。</p>
+<p>搜索 <code>McMojave</code> ，并安装。</p>
+<h4 id="仿mac图标"><a href="#仿mac图标" class="headerlink" title="仿mac图标"></a>仿mac图标</h4><p>系统设置  –》  图标  –》  获取新图标主题  –》  搜索McMojave –》  安装(风格可随意选择)  –》  返回选择该主题应用</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo+github搭建个人博客</title>
     <url>/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
 <p>注：以下内容在manjaro系统操作</p>
-</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
+</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm nodejs</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
 
 
 
@@ -43,7 +210,7 @@
 <p>如果你没有pug以及stylus的渲染器，请下载安装： </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug  hexo-renderer-stylus --save </span><br><span class="line">或者</span><br><span class="line">yarn add hexo-renderer-pug  hexo-renderer-stylus</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">type: git  </span><br><span class="line">repo: https://github.com/&lt;username&gt;/&lt;project&gt;  </span><br><span class="line"># example, https://github.com/hexojs/hexojs.github.io  </span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">type: git  </span><br><span class="line">repo: https://github.com/&lt;username&gt;/&lt;project&gt;  </span><br><span class="line"># 例如, https://github.com/hexojs/hexojs.github.io  </span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
 
 <p> 部署工具</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;博客目录&gt;</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
@@ -92,20 +259,15 @@
   <entry>
     <title>typora使用</title>
     <url>/2019/11/05/typora%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>#Typora For Markdown 语法</p><p>[TOC]</p><p>###数学表达式</p><p>要启用这个功能，首先到<code>Preference</code>-&gt;<code>Editor</code>中启用。然后使用<code>$</code>符号包裹Tex命令，例如：<code>$lim_{x \to \infty} \ exp(-x)=0$</code>将产生如下的数学表达式：</p><p>$\lim_{x \to \infty} \exp(-x)=0$</p><a id="more"></a>
+    <content><![CDATA[<h4 id="Typora-For-Markdown-语法"><a href="#Typora-For-Markdown-语法" class="headerlink" title="Typora For Markdown 语法"></a>Typora For Markdown 语法</h4><p>[TOC]</p><h4 id="数学表达式"><a href="#数学表达式" class="headerlink" title="数学表达式"></a>数学表达式</h4><p>要启用这个功能，首先到<code>Preference</code>-&gt;<code>Editor</code>中启用。然后使用<code>$</code>符号包裹Tex命令，例如：<code>$lim_{x \to \infty} \ exp(-x)=0$</code>将产生如下的数学表达式：</p><p>$\lim_{x \to \infty} \exp(-x)=0$</p><a id="more"></a>
 
 
-
-
-<p>###下标</p>
-<p>下标使用<code>~</code>包裹，例如：<code>H~2~O</code>将产生H<del>2</del>O, 即水的分子式。</p>
-<p>###上标</p>
-<p>上标使用<code>^</code>包裹，例如：<code>y^2^=4</code>将产生表达式y^2^ = 4</p>
-<p>###插入表情:happy:</p>
-<p>使用<code>:happy:</code>输入表情:happy:,使用<code>:sad:</code>输入表情:sad:,使用<code>:cry:</code>输入表情:cry:等。以此类推！</p>
-<h3 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h3><p>用HTML的语法<code>&lt;u&gt;Underline&lt;/u&gt;</code>将产生下划线<u>Underline</u>.</p>
-<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p>GFM添加了删除文本的语法，这是标准的Markdown语法木有的。使用<code>~~</code>包裹的文本将会具有删除的样式，例如<code>~删除文本~</code>将产生<del>删除文本</del>的样式。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
+<h4 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h4><p>下标使用<code>~</code>包裹，例如：<code>H~2~O</code>将产生H<del>2</del>O, 即水的分子式。</p>
+<h4 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h4><p>上标使用<code>^</code>包裹，例如：<code>y^2^=4</code>将产生表达式y^2^ = 4</p>
+<h4 id="插入表情-happy"><a href="#插入表情-happy" class="headerlink" title="插入表情:happy:"></a>插入表情:happy:</h4><p>使用<code>:happy:</code>输入表情:happy:,使用<code>:sad:</code>输入表情:sad:,使用<code>:cry:</code>输入表情:cry:等。以此类推！</p>
+<h4 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h4><p>用HTML的语法<code>&lt;u&gt;Underline&lt;/u&gt;</code>将产生下划线<u>Underline</u>.</p>
+<h4 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h4><p>GFM添加了删除文本的语法，这是标准的Markdown语法木有的。使用<code>~~</code>包裹的文本将会具有删除的样式，例如<code>~删除文本~</code>将产生<del>删除文本</del>的样式。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><ul>
 <li>使用`包裹的内容将会以代码样式显示，例如</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">使用`printf()`</span><br></pre></td></tr></table></figure>
@@ -117,7 +279,7 @@
 <li><pre><code><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Class HelloWorld&#123;</span><br><span class="line">  System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">&#125;</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">将会产生</span><br><span class="line"></span><br><span class="line">~~~java</span><br><span class="line">public Class HelloWorld&#123;</span><br><span class="line">  System.out.println(&quot;Hello World!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-### 强调
+#### 强调
 
 使用两个*号或者两个_包裹的内容将会被强调。例如
 
@@ -129,13 +291,13 @@
 __使用两个下划线强调内容__
 Typroa 推荐使用两个*号。
 
-### 斜体
+#### 斜体
 
 在标准的Markdown语法中，*和_包裹的内容会是斜体显示，但是GFM下划线一般用来分隔人名和代码变量名，因此我们推荐是用星号来包裹斜体内容。如果要显示星号，则使用转义：
 
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\*</span><br></pre></td></tr></table></figure>
 
-### 插入图片
+#### 插入图片
 
 我们可以通过拖拉的方式，将本地文件夹中的图片或者网络上的图片插入。
 
@@ -146,18 +308,18 @@ Typroa 推荐使用两个*号。
 
 </code></pre></li>
 </ul>
-<h3 id="插入URL连接"><a href="#插入URL连接" class="headerlink" title="插入URL连接"></a>插入URL连接</h3><p>使用尖括号包裹的url将产生一个连接，例如：<code>&lt;www.baidu.com&gt;</code>将产生连接:&lt;<a href="http://www.baidu.com&gt;" target="_blank" rel="noopener">www.baidu.com&gt;</a>.</p>
+<h4 id="插入URL连接"><a href="#插入URL连接" class="headerlink" title="插入URL连接"></a>插入URL连接</h4><p>使用尖括号包裹的url将产生一个连接，例如：<code>&lt;www.baidu.com&gt;</code>将产生连接:&lt;<a href="http://www.baidu.com&gt;" target="_blank" rel="noopener">www.baidu.com&gt;</a>.</p>
 <p>如果是标准的url，则会自动产生连接，例如:<a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a></p>
-<h3 id="目录列表Table-of-Contents（TOC）"><a href="#目录列表Table-of-Contents（TOC）" class="headerlink" title="目录列表Table of Contents（TOC）"></a>目录列表Table of Contents（TOC）</h3><p>输入[toc]然后回车，将会产生一个目录，这个目录抽取了文章的所有标题，自动更新内容。</p>
-<h3 id="水平分割线"><a href="#水平分割线" class="headerlink" title="水平分割线"></a>水平分割线</h3><p>使用<code>***</code>或者<code>---</code>，然后回车，来产生水平分割线。</p>
+<h4 id="目录列表Table-of-Contents（TOC）"><a href="#目录列表Table-of-Contents（TOC）" class="headerlink" title="目录列表Table of Contents（TOC）"></a>目录列表Table of Contents（TOC）</h4><p>输入[toc]然后回车，将会产生一个目录，这个目录抽取了文章的所有标题，自动更新内容。</p>
+<h4 id="水平分割线"><a href="#水平分割线" class="headerlink" title="水平分割线"></a>水平分割线</h4><p>使用<code>***</code>或者<code>---</code>，然后回车，来产生水平分割线。</p>
 <hr>
-<h3 id="标注"><a href="#标注" class="headerlink" title="标注"></a>标注</h3><p>我们可以对某一个词语进行标注。例如</p>
+<h4 id="标注"><a href="#标注" class="headerlink" title="标注"></a>标注</h4><p>我们可以对某一个词语进行标注。例如</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">某些人用过了才知道[^注释]</span><br><span class="line">[^注释]:Somebody that I used to know.</span><br></pre></td></tr></table></figure>
 
 <p>将产生：</p>
 <p>某些人用过了才知道[^注释]<br>[^注释]: Somebody that I used to know.</p>
 <p>把鼠标放在<code>注释</code>上，将会有提示内容。</p>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">|姓名|性别|毕业学校|工资|</span><br><span class="line">|:---|:---:|:---:|---:|</span><br><span class="line">|杨洋|男|重庆交通大学|3200|</span><br><span class="line">|峰哥|男|贵州大学|5000|</span><br><span class="line">|坑货|女|北京大学|2000|</span><br></pre></td></tr></table></figure>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">|姓名|性别|毕业学校|工资|</span><br><span class="line">|:---|:---:|:---:|---:|</span><br><span class="line">|杨洋|男|重庆交通大学|3200|</span><br><span class="line">|峰哥|男|贵州大学|5000|</span><br><span class="line">|坑货|女|北京大学|2000|</span><br></pre></td></tr></table></figure>
 
 <p>将产生:</p>
 <table>
@@ -194,27 +356,25 @@ Typroa 推荐使用两个*号。
 <td align="right"></td>
 </tr>
 </tbody></table>
-<h3 id="数学表达式块"><a href="#数学表达式块" class="headerlink" title="数学表达式块"></a>数学表达式块</h3><p>输入两个美元符号，然后回车，就可以输入数学表达式块了。例如：</p>
+<h4 id="数学表达式块"><a href="#数学表达式块" class="headerlink" title="数学表达式块"></a>数学表达式块</h4><p>输入两个美元符号，然后回车，就可以输入数学表达式块了。例如：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$$\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; \mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\\end&#123;vmatrix&#125;$$</span><br></pre></td></tr></table></figure>
 
 <p>将会产生:</p>
 <p> $$\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \\end{vmatrix}$$</p>
-<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>使用如下的代码创建任务列表，在[]中输入x表示完成，也可以通过点击选择完成或者没完成。</p>
+<h4 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h4><p>使用如下的代码创建任务列表，在[]中输入x表示完成，也可以通过点击选择完成或者没完成。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- [ ] 吃饭</span><br><span class="line">- [ ] 逛街</span><br><span class="line">- [ ] 看电影</span><br><span class="line">- [ ] 约泡</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><input checked disabled type="checkbox"> 吃饭</li>
+<li><input checked disabled type="checkbox"> <p>吃饭</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>逛街</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>看电影</p>
+</li>
+<li><input checked disabled type="checkbox"> <p>约泡</p>
+</li>
 </ul>
-<ul>
-<li><input checked disabled type="checkbox"> 逛街</li>
-</ul>
-<ul>
-<li><input checked disabled type="checkbox"> 看电影</li>
-</ul>
-<ul>
-<li><input checked disabled type="checkbox"> 约泡</li>
-</ul>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>输入+, -, *,创建无序的列表，使用任意数字开头，创建有序列表，例如：</p>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><p>输入+, -, *,创建无序的列表，使用任意数字开头，创建有序列表，例如：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">**无序的列表**</span><br><span class="line">* tfboys</span><br><span class="line">* 杨洋</span><br><span class="line">* 我爱你</span><br></pre></td></tr></table></figure>
 
 <p><strong>无序的列表</strong></p>
@@ -231,195 +391,20 @@ Typroa 推荐使用两个*号。
 <li>香蕉</li>
 <li>我都不喜欢</li>
 </ol>
-<h3 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h3><p>使用&gt;来插入块引用。例如：</p>
+<h4 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h4><p>使用&gt;来插入块引用。例如：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;这是一个块引用！</span><br></pre></td></tr></table></figure>
 
 <p>将产生：</p>
 <blockquote>
 <p>这是一个块引用！</p>
 </blockquote>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用#表示一级标题，##表示二级标题，以此类推，有6个标题。</p>
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p>使用#表示一级标题，##表示二级标题，以此类推，有6个标题。</p>
 ]]></content>
       <categories>
         <category>web前端</category>
       </categories>
       <tags>
         <tag>typora</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>manjaro安装与美化</title>
-    <url>/2019/11/05/manjaro%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="Manjaro-简介"><a href="#Manjaro-简介" class="headerlink" title="Manjaro 简介"></a>Manjaro 简介</h2><p><a href="https://www.manjaro.cn/category/about-manjaro-linux" target="_blank" rel="noopener">Manjaro</a> 是一款基于 Arch Linux、对用户友好的 Linux 发行版。在 Linux 社区，Arch Linux  的确是一个异常快速、强大、轻量级的发行版，它提供最新的、最全的软件。然而，Arch Linux  面向高级用户，普遍认为，缺乏技术专长或者没有耐心的人是无法玩转 Arch Linux的。</p><a id="more"></a>
-<p>Manjaro 由奥地利、法国和德国的爱好者共同开发，提供了 Arch Linux 操作系统的所有优点，同时注重用户友好性和可用性。 Manjaro 提供32位和64位版本，适合新手以及经验丰富的 Linux 用户。</p>
-<p>Manjaro 与 Arch 有许多相同的功能，包括：</p>
-<ul>
-<li>“滚动发行”开发模式，可提供最新的系统，而无需安装新版本</li>
-<li>可用 AUR</li>
-</ul>
-<p>然而，Manjaro 拥有自己的一些额外的功能，包括：</p>
-<ul>
-<li>简化、用户友好的安装过程</li>
-<li>自动检测计算机的硬件（例如显卡）</li>
-<li>为系统自动安装必要的软件（例如显卡驱动程序）</li>
-<li>它自己的专用软件仓库，以确保提供完全测试过的稳定的软件包</li>
-<li>轻松安装和使用多个内核。</li>
-</ul>
-<p>补充</p>
-<p><a href="https://wiki.archlinux.org/index.php/Arch_Linux_(简体中文" target="_blank" rel="noopener">Arch Linux（或 Arch /ˈɑːrtʃ/)）</a> 是一款基于 x86-64 架构的 Linux发行版。系统主要由自由和开源软件组成，支持社区参与。系统设计以 KISS  原则（保持简单和愚蠢）为总体指导原则，注重代码正确、优雅和极简主义，期待用户能够愿意去理解系统的操作。Arch Linux  系统安装、删除和更新软件的软件包管理器叫做 pacman。</p>
-<p>AUR 的全称是 <code>Arch User Repository</code>，是 Arch Linux/Manjaro 用户的社区驱动存储库，创建 AUR 的目的是使共享社区包的过程更容易和有条理。使用它可以在 Arch Linux/Manjaro 系统中安装和更新软件包。这个软件仓库的软件包是相当丰富，可以查看这个网站的统计<a href="https://repology.org/repositories/statistics/total" target="_blank" rel="noopener">Repository statistics</a>，它的软件列表可以在<a href="https://aur.archlinux.org/packages/" target="_blank" rel="noopener">Archlinux AUR</a>查看</p>
-<h4 id="linux下制作u盘安装盘"><a href="#linux下制作u盘安装盘" class="headerlink" title="linux下制作u盘安装盘"></a>linux下制作u盘安装盘</h4><p>用命令查找U盘盘符：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
-
-<p> 找到如：/dev/sdb 命名的盘符  根据容量大小判断哪个为U盘</p>
-<p>格式化U盘 </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo umount /dev/sdb <span class="comment">#卸载U盘</span></span><br><span class="line"></span><br><span class="line">sudo mkfs.vfat /dev/sdb <span class="comment">#格式化U盘</span></span><br></pre></td></tr></table></figure>
-
-<p>用DD命令把镜像写入U盘</p>
-<p>sudo dd if=镜像路径 of=/dev/sdb（U盘盘符）</p>
-<p> 等待完成</p>
-<h4 id="windows下用rufus软件制作"><a href="#windows下用rufus软件制作" class="headerlink" title="windows下用rufus软件制作"></a>windows下用rufus软件制作</h4><p>…</p>
-<h2 id="安装-Manjaro"><a href="#安装-Manjaro" class="headerlink" title="安装 Manjaro"></a>安装 Manjaro</h2><h4 id="分区："><a href="#分区：" class="headerlink" title="分区："></a>分区：</h4><table>
-<thead>
-<tr>
-<th>大小</th>
-<th>挂载点</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>30G</td>
-<td><code>/</code></td>
-<td>用于存放系统文件</td>
-</tr>
-<tr>
-<td>8G</td>
-<td><code>/linuxswap</code></td>
-<td>一般设为电脑内存大小或2倍</td>
-</tr>
-<tr>
-<td>1024MB</td>
-<td><code>/boot</code>/efi</td>
-<td>EFI引导分区</td>
-</tr>
-<tr>
-<td>20G</td>
-<td>/opt</td>
-<td>存放第三方软件包</td>
-</tr>
-<tr>
-<td>所有剩余的空间</td>
-<td><code>/home</code></td>
-<td>用户存储数据用</td>
-</tr>
-</tbody></table>
-<h2 id="pacman使用方法"><a href="#pacman使用方法" class="headerlink" title="pacman使用方法"></a>pacman使用方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -R 软件名　<span class="comment"># 删除单个软件包，保留其全部已经安装的依赖关系</span></span><br><span class="line">sudo pacman -Rs 软件名 <span class="comment"># 除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系</span></span><br><span class="line">sudo pacman -S 软件名  <span class="comment"># 安装软件</span></span><br><span class="line">sudo pacman -Ss 软件名  <span class="comment"># 查找软件</span></span><br><span class="line">sudo pacman -Sc <span class="comment"># 清空并且下载新数据</span></span><br><span class="line">sudo pacman -Syu　<span class="comment"># 升级所有软件包</span></span><br><span class="line">sudo pacman -Qs <span class="comment"># 搜索已安装的包</span></span><br><span class="line">sudo pacman -Syyu <span class="comment">#更新系统</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo pacman -S vim</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h4 id="更改源："><a href="#更改源：" class="headerlink" title="更改源："></a>更改源：</h4><p>配置中国的 <code>mirrors</code>，在 终端 执行下面的命令从官方的源列表中对中国源进行测速和设置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman-mirrors -g  <span class="comment"># 排列源，可不执行</span></span><br><span class="line">sudo pacman-mirrors -c China -m rank <span class="comment"># 更改源，在跳出的对话框里选择想要的源</span></span><br></pre></td></tr></table></figure>
-
-<p>为 Manjaro 增加中文社区的源来加速安装软件，在 <code>/etc/pacman.conf</code> 中添加 <code>archlinuxcn</code> 源，末尾加上：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">SigLevel = Optional TrustedOnly</span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="variable">$arch</span> <span class="comment">#可选其它源</span></span><br></pre></td></tr></table></figure>
-
-<p>同步并更新系统并安装<code>archlinuxcn-keyring</code> 包以导入 <code>GPG key</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -Syy &amp;&amp;sudo pacman -S archlinuxcn-keyring</span><br></pre></td></tr></table></figure>
-
-<h2 id="开启小键盘灯"><a href="#开启小键盘灯" class="headerlink" title="开启小键盘灯"></a>开启小键盘灯</h2><p>在 /etc/sddm.conf 文件中加入一句 Numlock=on</p>
-<h2 id="安装-yay"><a href="#安装-yay" class="headerlink" title="安装 yay"></a>安装 yay</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S yay</span><br></pre></td></tr></table></figure>
-
-<p>配置 yay 的 aur 源为<a href="https://mirror.tuna.tsinghua.edu.cn/help/AUR/" target="_blank" rel="noopener">清华源 AUR 镜像</a>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay --aururl <span class="string">"https://aur.tuna.tsinghua.edu.cn"</span> --save</span><br></pre></td></tr></table></figure>
-
-<p>修改的配置文件位于 <code>~/.config/yay/config.json</code> ，还可通过以下命令查看修改过的配置:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay -P -g</span><br></pre></td></tr></table></figure>
-
-<p>yay 的常用命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay -S package <span class="comment"># 从 AUR 安装软件包</span></span><br><span class="line">yay -Rns package <span class="comment"># 删除包</span></span><br><span class="line">yay -Syu <span class="comment"># 升级所有已安装的包</span></span><br><span class="line">yay -Ps <span class="comment"># 打印系统统计信息</span></span><br><span class="line">yay -Qi package <span class="comment"># 检查安装的版本</span></span><br></pre></td></tr></table></figure>
-
-<p>yay 安装命令不需要加 <code>sudo</code>。</p>
-<h2 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h2><p>citx 是 Free Chinese Input Toy for X 的缩写，国内也常称作小企鹅输入法，是一款 Linux 下的中文输入法:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S fcitx-googlepinyin <span class="comment">#谷歌拼音</span></span><br><span class="line">sudo pacman -S fcitx-im <span class="comment"># 选择全部安装</span></span><br><span class="line">sudo pacman -S fcitx-configtool <span class="comment"># 安装图形化配置工具</span></span><br></pre></td></tr></table></figure>
-
-<p>解决中文输入法无法切换问题: 添加文件 <code>~/.xprofile</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim ~/.xprofile</span><br></pre></td></tr></table></figure>
-
-<p>输入以下内容：</p>
-<blockquote>
-<p>export GTK_MODULE=fcitx<br>export QT_IM_MODULE=fcitx<br>export XMODIFIERS=”@im=fcitx”</p>
-</blockquote>
-<p>输入法需要重启生效</p>
-<h2 id="安装wps"><a href="#安装wps" class="headerlink" title="安装wps"></a>安装wps</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S wps-office</span><br><span class="line">sudo pacman -S ttf-wps-fonts <span class="comment">#wps所需字体</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S zsh <span class="comment"># 安装zsh</span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看当前 shell</span></span><br><span class="line">chsh -s /bin/zsh <span class="comment"># 修改默认shell，这个是修改当前用户的终端，如果要修改 root 账户，需要切换到 root用户</span></span><br></pre></td></tr></table></figure>
-
-<p>安装插件autojump</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S autojump</span><br></pre></td></tr></table></figure>
-
-<p>安装高亮显示插件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br><span class="line">sudo vim ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>在文件中找到plugins=(git 其他插件) 在其他插件后加一个空格输入zsh-syntax-highlighting 后保存退出</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>使配置生效</p>
-<p>安装自动补全插件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br><span class="line">sudo vim ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>在文件中找到plugins=(git 其他插件) 在其他插件后加一个空格输入zsh-autosuggestions 后保存退出</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>使配置生效</p>
-<p>需要重启生效</p>
-<h2 id="安装中文字体"><a href="#安装中文字体" class="headerlink" title="安装中文字体"></a>安装中文字体</h2><p>为啥会突出一下要安装中欧给你问字体呢，因为我使用过程发现系统里的中文字变成了一个个小白方框的格子，安装好中文字体并重启后，就显示正常了：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S wqy-zenhei</span><br><span class="line">sudo pacman -S wqy-bitmapfont</span><br><span class="line">sudo pacman -S wqy-microhei</span><br><span class="line">sudo pacman -S adobe-source-han-sans-cn-fonts</span><br><span class="line">sudo pacman -S adobe-source-han-serif-cn-fonts</span><br><span class="line">sudo pacman -S ttf-monaco</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># deepin 系的软件</span></span><br><span class="line">sudo pacman -S deepin-picker <span class="comment"># 深度取色器</span></span><br><span class="line">sudo pacman -S deepin-screen-recorder <span class="comment"># 录屏软件，可以录制 Gif 或者 MP4 格式</span></span><br><span class="line">sudo pacman -S deepin-screenshot <span class="comment"># 深度截图</span></span><br><span class="line">sudo pacman -S deepin-system-monitor <span class="comment"># 系统状态监控</span></span><br><span class="line">yay -s deepin-wine-wechat</span><br><span class="line">yay -S deepin-wine-tim</span><br><span class="line">yay -S deepin-wine-baidupan</span><br><span class="line">yay -S deepin.com.thunderspeed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开发软件</span></span><br><span class="line">sudo pacman -S jdk8-openjdk</span><br><span class="line">sudo pacman -S make</span><br><span class="line">sudo pacman -S cmake</span><br><span class="line">sudo pacman -S clang</span><br><span class="line">sudo pacman -S nodejs</span><br><span class="line">sudo pacman -S npm</span><br><span class="line">sudo pacman -S go</span><br><span class="line">sudo pacman -S maven</span><br><span class="line">sudo pacman -S pycharm-professional <span class="comment"># Python IDE</span></span><br><span class="line">sudo pacman -S intellij-idea-ultimate-edition <span class="comment"># JAVA IDE</span></span><br><span class="line">sudo pacman -S goland <span class="comment"># Go IDE</span></span><br><span class="line">sudo pacman -S visual-studio-code-bin <span class="comment"># vscode</span></span><br><span class="line">sudo pacman -S qtcreator <span class="comment"># 一款QT开发软件</span></span><br><span class="line">sudo pacman -S postman-bin</span><br><span class="line">sudo pacman -S insomnia <span class="comment"># REST模拟工具</span></span><br><span class="line">sudo pacman -S gitkraken <span class="comment"># GIT管理工具</span></span><br><span class="line">sudo pacman -S wireshark-qt <span class="comment"># 抓包</span></span><br><span class="line">sudo pacman -S zeal</span><br><span class="line">sudo pacman -S gitkraken <span class="comment"># Git 管理工具</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 办公软件</span></span><br><span class="line">sudo pacman -S google-chrome</span><br><span class="line">sudo pacman -S foxitreader <span class="comment"># pdf 阅读</span></span><br><span class="line">sudo pacman -S bookworm <span class="comment"># 电子书阅读</span></span><br><span class="line">sudo pacman -S unrar unzip p7zip</span><br><span class="line">sudo pacman -S goldendict <span class="comment"># 翻译、取词</span></span><br><span class="line">yay -S typora <span class="comment"># markdown 编辑</span></span><br><span class="line">yay -S electron-ssr <span class="comment"># 缺少我需要的加密算法</span></span><br><span class="line">yay -S xmind</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设计</span></span><br><span class="line">sudo pacman -S pencil <span class="comment"># 免费开源界面原型图绘制工具</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 娱乐软件</span></span><br><span class="line">sudo pacman -S netease-cloud-music</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载软件</span></span><br><span class="line">sudo pacman -S aria2</span><br><span class="line">sudo pacman -S filezilla  <span class="comment"># FTP/SFTP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图形</span></span><br><span class="line">sudo pacman -S gimp <span class="comment"># 修图</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 系统工具</span></span><br><span class="line">sudo pacman -S albert <span class="comment">#类似Mac Spotlight，另外一款https://cerebroapp.com/</span></span><br><span class="line">yay -S copyq <span class="comment">#  剪贴板工具，类似 Windows 上的 Ditto</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终端</span></span><br><span class="line">sudo pacman -S screenfetch <span class="comment"># 终端打印出你的系统信息，screenfetch -A 'Arch Linux'</span></span><br><span class="line">sudo pacman -S htop</span><br><span class="line">sudo pacman -S bat</span><br><span class="line">sudo pacman -S yakuake <span class="comment"># 堪称 KDE 下的终端神器，KDE 已经自带，F12 可以唤醒</span></span><br><span class="line">sudo pacman -S net-tools <span class="comment"># 这样可以使用 ifconfig 和 netstat</span></span><br><span class="line">yay -S tldr</span><br><span class="line">yay -S tig <span class="comment"># 命令行下的 git 历史查看工具</span></span><br><span class="line">yay -S tree</span><br><span class="line">yay -S ncdu <span class="comment"># 命令行下的磁盘分析器，支持Vim操作</span></span><br><span class="line">yay -S mosh <span class="comment"># 一款速度更快的 ssh 工具，网络不稳定时使用有奇效</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><h3 id="Dolphin"><a href="#Dolphin" class="headerlink" title="Dolphin"></a>Dolphin</h3><p>Dolphin 是 KDE 下默认的文件管理器。</p>
-<ul>
-<li>在系统设置-》桌面行为-》工作空间-》点击行为，勾选”双击打开文件和文件夹“；</li>
-<li>在菜单中搜索”常规“-》确认，勾选”将文件或文件夹移至回收站“；</li>
-</ul>
-<h4 id="修改主要目录为英文"><a href="#修改主要目录为英文" class="headerlink" title="修改主要目录为英文"></a>修改主要目录为英文</h4><p>输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S xdg-user-dirs-gtk</span><br><span class="line"><span class="built_in">export</span> LANG=en_US</span><br><span class="line">xdg-user-dirs-gtk-update<span class="comment"># 然后有个窗口弹出，修改为英文即可。</span></span><br><span class="line"><span class="built_in">export</span> LANG=zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="显卡驱动"><a href="#显卡驱动" class="headerlink" title="显卡驱动"></a>显卡驱动</h1><p>manjaro对于笔记本使用的是bumblebee管理显卡驱动，可以实现核显卡和独立显卡的切换使用，以节电。<br>一般情况下，系统设置-&gt;硬件设定里面是已经安装了video-hybrid-intel-nvidia-bumblebee（里面包括nvidia驱动），因此不需要再从源里面或者官网下载驱动来安装了（如果没有，点击Auto Install Proprietary Driver即可，自动安装合适的专有驱动，如果是台式机，则安装独显驱动，如果是笔记本，它安装的是bumblebee驱动，默认使用核心显卡来省电），下面步骤来激活或者切换驱动。</p>
-<p>①先解决依赖</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S virtualgl lib32-virtualgl lib32-primus primus</span><br></pre></td></tr></table></figure>
-
-<p>②安装双显卡切换程序bumblebee</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mhwd -f -i pci video-hybrid-intel-nvidia-bumblebee</span><br></pre></td></tr></table></figure>
-
-<p>③允许服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> bumblebeed</span><br></pre></td></tr></table></figure>
-
-<p>④添加用户</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -a <span class="variable">$USER</span> bumblebee</span><br></pre></td></tr></table></figure>
-
-<p>重启</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
-
-<p>使用：optirun nvidia-smi  查看显卡信息</p>
-<p>至此，manjaro的双显卡就安装好了</p>
-<h2 id="美化桌面"><a href="#美化桌面" class="headerlink" title="美化桌面"></a>美化桌面</h2><h4 id="首先安装latte-dock（模仿mac风格的dock）"><a href="#首先安装latte-dock（模仿mac风格的dock）" class="headerlink" title="首先安装latte-dock（模仿mac风格的dock）"></a>首先安装latte-dock（模仿mac风格的dock）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S latte-dock</span><br></pre></td></tr></table></figure>
-
-<p>点击 <code>应用程序风格</code> -&gt; <code>GNOME/GTK 应用程序风格</code> -&gt; <code>获取新 GNOME/GTK 应用风格</code> -&gt; <code>下载 GTK3 主题</code>。</p>
-<p>搜索 <code>McMojave</code> ，并安装。</p>
-<h4 id="仿mac图标"><a href="#仿mac图标" class="headerlink" title="仿mac图标"></a>仿mac图标</h4><p>系统设置  –》  图标  –》  获取新图标主题  –》  搜索McMojave –》  安装(风格可随意选择)  –》  返回选择该主题应用</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>manjaro</tag>
       </tags>
   </entry>
 </search>
