@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo+github搭建个人博客</title>
+    <url>/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
+<p>注：以下内容在manjaro系统操作</p>
+</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
+
+
+
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮件地址"</span></span><br></pre></td></tr></table></figure>
+
+<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到<code>.ssh\id_rsa.pub</code>文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key,将刚复制的内容粘贴到key那里，title随便填，保存。</p>
+<p>测试是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com <span class="comment"># 注意邮箱地址不用改</span></span><br></pre></td></tr></table></figure>
+
+<p>如果提示<code>Are you sure you want to continue connecting (yes/no)?</code>，输入yes，然后会看到：</p>
+<blockquote>
+<p>Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<p>看到这个信息说明SSH已配置成功！</p>
+<p>此时你还需要配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"github名称"</span></span><br><span class="line">git config --global user.email <span class="string">"注册github邮箱"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2、安装hexo"><a href="#2、安装hexo" class="headerlink" title="2、安装hexo"></a>2、安装hexo</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。"><a href="#3、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。" class="headerlink" title="3、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。"></a>3、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>新建完成后，指定文件夹的目录如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml    <span class="comment">#网站的 配置 信息，您可以在此配置大部分的参数。</span></span><br><span class="line">├── package.json	<span class="comment">#应用程序的信息。</span></span><br><span class="line">├── scaffolds		<span class="comment">#模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</span></span><br><span class="line">├── <span class="built_in">source</span>			<span class="comment">#资源文件夹是存放用户资源的地方。</span></span><br><span class="line">|   ├── _drafts		</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes			<span class="comment">#主题 文件夹。Hexo 会根据主题来生成静态页面。</span></span><br></pre></td></tr></table></figure>
+
+<p>配置_config.yml</p>
+<p>安装主题</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">git <span class="built_in">clone</span> github主题地址.git themes/主题名</span><br><span class="line"><span class="comment">#推荐主题：git clone https://github.com/theme-next/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件<code>_config.yml</code>，把主题改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">theme: 主题名</span><br></pre></td></tr></table></figure>
+
+<p>如果你没有pug以及stylus的渲染器，请下载安装： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug  hexo-renderer-stylus --save </span><br><span class="line">或者</span><br><span class="line">yarn add hexo-renderer-pug  hexo-renderer-stylus</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">type: git  </span><br><span class="line">repo: https://github.com/&lt;username&gt;/&lt;project&gt;  </span><br><span class="line"># example, https://github.com/hexojs/hexojs.github.io  </span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+
+<p> 部署工具</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;博客目录&gt;</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>server工具</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-server--save</span><br></pre></td></tr></table></figure>
+
+<h2 id="hexo命令："><a href="#hexo命令：" class="headerlink" title="hexo命令："></a>hexo命令：</h2><h4 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<h4 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>生成静态文件。该命令可以简写为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
+<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>部署网站。该命令可以简写为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-g</code>, <code>--generate</code></td>
+<td>部署之前预先生成静态文件</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>manjaro安装与美化</title>
     <url>/2019/11/05/manjaro%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h2 id="Manjaro-简介"><a href="#Manjaro-简介" class="headerlink" title="Manjaro 简介"></a>Manjaro 简介</h2><p><a href="https://www.manjaro.cn/category/about-manjaro-linux" target="_blank" rel="noopener">Manjaro</a> 是一款基于 Arch Linux、对用户友好的 Linux 发行版。在 Linux 社区，Arch Linux  的确是一个异常快速、强大、轻量级的发行版，它提供最新的、最全的软件。然而，Arch Linux  面向高级用户，普遍认为，缺乏技术专长或者没有耐心的人是无法玩转 Arch Linux的。</p><a id="more"></a>
@@ -331,95 +420,6 @@ Typroa 推荐使用两个*号。
       </categories>
       <tags>
         <tag>typora</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo+github搭建个人博客</title>
-    <url>/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a><center>hexo+github搭建个人博客</center></h1><blockquote>
-<p>注：以下内容在manjaro系统操作</p>
-</blockquote><h4 id="1、安装git、nodejs、npm"><a href="#1、安装git、nodejs、npm" class="headerlink" title="1、安装git、nodejs、npm"></a>1、安装git、nodejs、npm</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pacman -S git npm</span><br></pre></td></tr></table></figure><p>git配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure><p>如果提示：No such file or directory 说明你是第一次使用git。</p><a id="more"></a>
-
-
-
-
-
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮件地址"</span></span><br></pre></td></tr></table></figure>
-
-<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到<code>.ssh\id_rsa.pub</code>文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key,将刚复制的内容粘贴到key那里，title随便填，保存。</p>
-<p>测试是否成功：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com <span class="comment"># 注意邮箱地址不用改</span></span><br></pre></td></tr></table></figure>
-
-<p>如果提示<code>Are you sure you want to continue connecting (yes/no)?</code>，输入yes，然后会看到：</p>
-<blockquote>
-<p>Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-</blockquote>
-<p>看到这个信息说明SSH已配置成功！</p>
-<p>此时你还需要配置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"github名称"</span></span><br><span class="line">git config --global user.email <span class="string">"注册github邮箱"</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2、安装hexo"><a href="#2、安装hexo" class="headerlink" title="2、安装hexo"></a>2、安装hexo</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。"><a href="#3、安装-Hexo-完成后，请执行下列命令，Hexo-将会在指定文件夹中新建所需要的文件。" class="headerlink" title="3、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。"></a>3、安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>新建完成后，指定文件夹的目录如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml    <span class="comment">#网站的 配置 信息，您可以在此配置大部分的参数。</span></span><br><span class="line">├── package.json	<span class="comment">#应用程序的信息。</span></span><br><span class="line">├── scaffolds		<span class="comment">#模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</span></span><br><span class="line">├── <span class="built_in">source</span>			<span class="comment">#资源文件夹是存放用户资源的地方。</span></span><br><span class="line">|   ├── _drafts		</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes			<span class="comment">#主题 文件夹。Hexo 会根据主题来生成静态页面。</span></span><br></pre></td></tr></table></figure>
-
-<p>配置_config.yml</p>
-<p>安装主题</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">git <span class="built_in">clone</span> github主题地址.git themes/主题名</span><br><span class="line"><span class="comment">#推荐主题：git clone https://github.com/theme-next/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件<code>_config.yml</code>，把主题改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">theme: 主题名</span><br></pre></td></tr></table></figure>
-
-<p>如果你没有pug以及stylus的渲染器，请下载安装： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug  hexo-renderer-stylus --save </span><br><span class="line">或者</span><br><span class="line">yarn add hexo-renderer-pug  hexo-renderer-stylus</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">type: git  </span><br><span class="line">repo: https://github.com/&lt;username&gt;/&lt;project&gt;  </span><br><span class="line"># example, https://github.com/hexojs/hexojs.github.io  </span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-
-<p> 部署工具</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;博客目录&gt;</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>server工具</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-server--save</span><br></pre></td></tr></table></figure>
-
-<h2 id="hexo命令："><a href="#hexo命令：" class="headerlink" title="hexo命令："></a>hexo命令：</h2><h4 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
-<h4 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>生成静态文件。该命令可以简写为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
-<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>部署网站。该命令可以简写为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>-g</code>, <code>--generate</code></td>
-<td>部署之前预先生成静态文件</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>web前端</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>博客</tag>
       </tags>
   </entry>
 </search>
