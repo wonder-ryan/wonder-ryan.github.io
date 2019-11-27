@@ -50,14 +50,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ryan&#39;Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;wonder-ryan.github.io&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="1、出现提示：”Visual Studio Code is unable to watch for file changes in this large workspace” (error ENOSPC)  （超出VSCode文件监控数量）manjaro系统解决方法：运行以下命令查看当前限制文件数量：">
+<meta name="keywords" content="VScode,go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VScode的go配置">
+<meta property="og:url" content="https:&#x2F;&#x2F;wonder-ryan.github.io&#x2F;2019&#x2F;11&#x2F;21&#x2F;VScode%E7%9A%84go%E9%85%8D%E7%BD%AE&#x2F;index.html">
 <meta property="og:site_name" content="Ryan&#39;Blog">
+<meta property="og:description" content="1、出现提示：”Visual Studio Code is unable to watch for file changes in this large workspace” (error ENOSPC)  （超出VSCode文件监控数量）manjaro系统解决方法：运行以下命令查看当前限制文件数量：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-21T08:04:53.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wonder-ryan.github.io/archives/2019/">
+<link rel="canonical" href="https://wonder-ryan.github.io/2019/11/21/VScode%E7%9A%84go%E9%85%8D%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -65,13 +69,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | Ryan'Blog</title>
+  <title>VScode的go配置 | Ryan'Blog</title>
   
 
 
@@ -200,129 +204,122 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 5 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wonder-ryan.github.io/2019/11/21/VScode%E7%9A%84go%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wonder-Ryan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VScode的go配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-21 15:09:53 / 修改时间：16:04:53" itemprop="dateCreated datePublished" datetime="2019-11-21T15:09:53+08:00">2019-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>526</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
+        <p><strong>1、出现提示：”Visual Studio Code is unable to watch for file changes in this large workspace” (error ENOSPC)  （超出VSCode文件监控数量）manjaro系统解决方法：</strong></p><p>运行以下命令查看当前限制文件数量：</p><a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/inotify/max_user_watches</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-21T15:09:53+08:00"
-              content="2019-11-21">
-          11-21
-        </time>
-      </div>
+<p>默认为：16384，我们把它改到81920，运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">echo</span> fs.inotify.max_user_watches=81920 | sudo tee /etc/sysctl.d/50-max_user_watches.conf &amp;&amp; sudo sysctl --system</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/21/VScode%E7%9A%84go%E9%85%8D%E7%BD%AE/" itemprop="url">
-            <span itemprop="name">VScode的go配置</span>
-          </a>
-      </h2>
+<p><font color="red">注意</font>：不同发行版修改的文件不一样，Manjaro 18.1.3修改的是<code>/etc/sysctl.d/50-max_user_watches.conf</code> ，其它linux则修改 <code>/etc/sysctl.conf</code>命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> fs.inotify.max_user_watches=81920 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-08T13:36:53+08:00"
-              content="2019-11-08">
-          11-08
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/08/next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" itemprop="url">
-            <span itemprop="name">NEXT主题配置</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-05T21:37:45+08:00"
-              content="2019-11-05">
-          11-05
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/05/hexo+github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">
-            <span itemprop="name">hexo+github搭建个人博客</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-05T21:37:45+08:00"
-              content="2019-11-05">
-          11-05
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/05/manjaro%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BE%8E%E5%8C%96/" itemprop="url">
-            <span itemprop="name">manjaro安装与美化</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-05T21:37:45+08:00"
-              content="2019-11-05">
-          11-05
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/05/typora%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">typora使用</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+<p>这里是官方给出的解决方案：<a href="https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc" target="_blank" rel="noopener">点我起飞</a></p>
 
     </div>
+
+    
+    
+    
+    <div style="text-align:center;color: #ccc;font-size:20px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/VScode/" rel="tag"><i class="fa fa-tag"></i> VScode</a>
+              <a href="/tags/go/" rel="tag"><i class="fa fa-tag"></i> go</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/08/next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" rel="next" title="NEXT主题配置">
+                  <i class="fa fa-chevron-left"></i> NEXT主题配置
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
